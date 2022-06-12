@@ -6,10 +6,10 @@
 **/
 public class EvalExp extends Exp {
     
-    private Var left;
-    private Var right;
+    private Value left;
+    private Value right;
 
-    public EvalExp(Var left,Var right) {
+    public EvalExp(Value left,Value right) {
         this.left = left;
         this.right = right;
     }

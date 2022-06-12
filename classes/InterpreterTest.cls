@@ -257,4 +257,50 @@ private class InterpreterTest {
 
     }
 
+    @isTest
+    private static void singleLiteralValueTest(){
+        
+        // 123
+        Object result;
+        Value literal = new Literal(123);
+        
+        Test.startTest();
+        //no matter the context in literals
+        result = literal.getValue(new Context());
+        Test.stopTest();
+        
+        System.assertEquals(123, result, 'wrong value returned in literal');
+
+    }
+
+    @isTest
+    private static void multipleLiteralValuesTest(){
+        
+        // 'test' 123 TRUE  null
+        Object result1;
+        Object result2;
+        Object result3;
+        Object result4;
+
+        Value literal1 = new Literal('test');
+        Value literal2 = new Literal(123);
+        Value literal3 = new Literal(true);
+        Value literal4 = new Literal(null);
+       
+        Context nullContext = new Context();
+        
+        Test.startTest();
+        result1 = literal1.getValue(nullContext);
+        result2 = literal2.getValue(nullContext);
+        result3 = literal3.getValue(nullContext);
+        result4 = literal4.getValue(nullContext);
+        Test.stopTest();
+
+        System.assertEquals('test', result1, 'incorrect value in literal');
+        System.assertEquals(123, result2, 'incorrect value in literal');
+        System.assertEquals(true, result3, 'incorrect value in literal');
+        System.assertEquals(null, result4, 'incorrect value in literal');
+
+    }
+
 }
