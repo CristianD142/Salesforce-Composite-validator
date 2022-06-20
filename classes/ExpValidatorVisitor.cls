@@ -45,9 +45,11 @@ public class ExpValidatorVisitor implements ExpVisitor{
         Object leftValue = value;
         exp.getRight().accept(this);
         Object rightValue = value;
-
-        result = (leftValue == rightValue);
-        
+        if(exp.getType() == EvalExp.Type.EQUAL){
+            result = (leftValue == rightValue);
+        }else{
+            result = (leftValue != rightValue);
+        }
     }
 
     public void visit(Literal literal){

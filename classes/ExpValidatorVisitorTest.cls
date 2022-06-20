@@ -66,7 +66,29 @@ private class ExpValidatorVisitorTest {
 
         System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
-    }    
+    }
+
+    @isTest
+    private static void singleEvalExpDiffSuccessTest(){
+        // A = B
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+
+        EvalExp eval1 = new EvalExp(EvalExp.Type.DIFF,A,B);
+
+        Context context = new Context();
+        context.put('A', 1);
+        context.put('B', 2);
+
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
+
+        Test.startTest();
+        eval1.accept(visitor);
+        Test.stopTest();
+
+        System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
+
+    }
 
     @isTest
     private static void singleAndExpSuccessTest(){

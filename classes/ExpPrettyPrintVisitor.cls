@@ -44,7 +44,12 @@ public class ExpPrettyPrintVisitor implements ExpVisitor{
 
     public void visit(EvalExp exp){
         exp.getLeft().accept(this);
-        result += '=';
+        if(exp.getType() == EvalExp.Type.EQUAL){
+            result += '=';
+        }else{
+            result += '!=';
+        }
+        
         exp.getRight().accept(this);
     }
 

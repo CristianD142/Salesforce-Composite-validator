@@ -8,10 +8,22 @@ public class EvalExp extends Exp {
     
     private Value left;
     private Value right;
+    private Type type;
+    public enum Type {
+        EQUAL,
+        DIFF
+    }
 
     public EvalExp(Value left,Value right) {
         this.left = left;
         this.right = right;
+        this.type = EvalExp.Type.EQUAL;
+    }
+
+    public EvalExp(Type type,Value left,Value right) {
+        this.left = left;
+        this.right = right;
+        this.type = type;
     }
 
     public override void accept(ExpVisitor visitor){ 
@@ -24,5 +36,9 @@ public class EvalExp extends Exp {
 
     public Value getRight(){
         return right;
+    }
+
+    public Type getType(){
+        return type;
     }
 }
