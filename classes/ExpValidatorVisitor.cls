@@ -54,7 +54,7 @@ public class ExpValidatorVisitor implements ExpVisitor{
         value = literal.getValue();
     }
     
-    public void visit(Var var){
+    public void visit(Variable var){
         value = context.get(var.getName());
     }
 

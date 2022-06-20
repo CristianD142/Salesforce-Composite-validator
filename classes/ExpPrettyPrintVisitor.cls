@@ -52,7 +52,7 @@ public class ExpPrettyPrintVisitor implements ExpVisitor{
         result += String.valueOf(literal.getValue());
     }
     
-    public void visit(Var var){
+    public void visit(Variable var){
         result += var.getName();
     }
 

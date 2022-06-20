@@ -14,7 +14,7 @@ private class ExpValidatorVisitorTest {
         // A
         String expected = 'test';
 
-        Var A = new Var('A');
+        Variable A = new Variable('A');
         
         Context context = new Context();
         context.put('A', expected);
@@ -49,8 +49,8 @@ private class ExpValidatorVisitorTest {
     @isTest
     private static void singleEvalExpSuccessTest(){
         // A = B
-        Var A = new Var('A');
-        Var B = new Var('B');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
 
         EvalExp eval1 = new EvalExp(A,B);
 
@@ -72,10 +72,10 @@ private class ExpValidatorVisitorTest {
     private static void singleAndExpSuccessTest(){
 
         // AND (A = B, C = D)
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -104,10 +104,10 @@ private class ExpValidatorVisitorTest {
     private static void singleAndExpFailTest(){
 
         // AND (A = B, C = D)
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -136,10 +136,10 @@ private class ExpValidatorVisitorTest {
     private static void singleOrExpSuccessTest(){
 
         // OR (A = B, C = D )
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -168,10 +168,10 @@ private class ExpValidatorVisitorTest {
     private static void singleOrExpFailTest(){
 
         // OR (A = B, C = D)
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -201,12 +201,12 @@ private class ExpValidatorVisitorTest {
     private static void complexMixedAndOrSuccessTest(){
 
         // AND (A = B, OR (C = D, E = F ))
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
-        Var E = new Var('E');
-        Var F = new Var('F');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
+        Variable E = new Variable('E');
+        Variable F = new Variable('F');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);

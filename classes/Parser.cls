@@ -12,7 +12,7 @@
 9 value -> VARIABLE
 10 value -> CONSTANT
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-19
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 
@@ -105,7 +105,7 @@ public class Parser {
     private Value value(){
         Value result;
         if(currentToken.getType() == Token.Type.VARIABLE){
-            result = new Var(currentToken.getValue());
+            result = new Variable(currentToken.getValue());
             next();
         }else if(currentToken.getType() == Token.Type.CONSTANT){
             result = new Literal(currentToken.getValue());

@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-13
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
@@ -11,7 +11,7 @@ private class ExpPrettyPrintVisitorTest {
     private static void singleVarTest(){
         
         // A
-        Var A = new Var('A');
+        Variable A = new Variable('A');
         ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
 
         Test.startTest();
@@ -68,7 +68,7 @@ private class ExpPrettyPrintVisitorTest {
     @isTest
     private static void singleEvalExpTest(){
         // A = 123
-        Var var = new Var('A');
+        Variable var = new Variable('A');
         Literal literal = new Literal(123);
 
         EvalExp eval1 = new EvalExp(var,literal);        
@@ -88,10 +88,10 @@ private class ExpPrettyPrintVisitorTest {
         // OR (A = B, C = D )
         ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
 
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -114,10 +114,10 @@ private class ExpPrettyPrintVisitorTest {
         // AND (A = B, C = D )
         ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
 
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);
@@ -140,12 +140,12 @@ private class ExpPrettyPrintVisitorTest {
         // AND (A = B, OR (C = D, E = F ))
         ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
 
-        Var A = new Var('A');
-        Var B = new Var('B');
-        Var C = new Var('C');
-        Var D = new Var('D');
-        Var E = new Var('E');
-        Var F = new Var('F');
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        Variable C = new Variable('C');
+        Variable D = new Variable('D');
+        Variable E = new Variable('E');
+        Variable F = new Variable('F');
         
         EvalExp eval1 = new EvalExp(A,B);
         EvalExp eval2 = new EvalExp(C,D);

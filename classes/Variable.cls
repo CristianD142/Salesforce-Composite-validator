@@ -4,11 +4,11 @@
  * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
-public class Var implements Value {
+public class Variable implements Value {
 
     String name;
 
-    public Var(String name) {
+    public Variable(String name) {
         this.name = name;
     }
 

@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-12
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public interface ExpVisitor {
@@ -9,5 +9,5 @@ public interface ExpVisitor {
     void visit(OrExp exp);
     void visit(EvalExp exp);
     void visit(Literal literal);
-    void visit(Var var);
+    void visit(Variable var);
 }
