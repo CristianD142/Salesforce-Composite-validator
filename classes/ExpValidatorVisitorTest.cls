@@ -260,4 +260,27 @@ private class ExpValidatorVisitorTest {
         System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
     }
+
+    @isTest
+    private static void singleNotEvalExpSuccessTest(){
+        // NOT ( A = B )
+        Variable A = new Variable('A');
+        Variable B = new Variable('B');
+        
+        EvalExp eval1 = new EvalExp(A,B);
+        NotExp notExp = new notExp(eval1);
+
+        Context context = new Context();
+        context.put('A', 1);
+        context.put('B', 1);
+
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
+
+        Test.startTest();
+        notExp.accept(visitor);
+        Test.stopTest();
+
+        System.assertEquals(false, visitor.isValid(), BAD_INTERPRETED);
+
+    }
 }

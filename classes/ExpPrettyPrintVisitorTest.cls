@@ -170,5 +170,23 @@ private class ExpPrettyPrintVisitorTest {
 
     }
 
+    @isTest
+    private static void singleNotEvalExpTest(){
+        // NOT ( A = 123 )
+        Variable var = new Variable('A');
+        Literal literal = new Literal(123);
+
+        EvalExp eval1 = new EvalExp(var,literal);
+        NotExp notExp = new notExp(eval1);
+
+        ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor(); 
+
+        Test.startTest();
+        notExp.accept(visitor);
+        Test.stopTest();
+
+        System.assertEquals('NOT(A=123)', visitor.getResult(), 'Incorrect EvalExp result');
+
+    }
     
 }

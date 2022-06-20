@@ -61,6 +61,12 @@ public class ExpPrettyPrintVisitor implements ExpVisitor{
         result += var.getName();
     }
 
+    public void visit(NotExp exp){
+        result+= 'NOT(';
+        exp.getExp().accept(this);
+        result+= ')';
+    }
+
     public String getResult(){
         return result;
     }

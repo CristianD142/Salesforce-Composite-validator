@@ -10,4 +10,5 @@ public interface ExpVisitor {
     void visit(EvalExp exp);
     void visit(Literal literal);
     void visit(Variable var);
+    void visit(NotExp exp);
 }

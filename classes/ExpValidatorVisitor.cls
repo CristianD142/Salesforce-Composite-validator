@@ -60,7 +60,13 @@ public class ExpValidatorVisitor implements ExpVisitor{
         value = context.get(var.getName());
     }
 
+    public void visit(NotExp exp){
+        exp.getExp().accept(this);
+        result = !result;
+    }
+
     public Boolean isValid(){
         return result;
     }
+
 }
