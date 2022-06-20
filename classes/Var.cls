@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-12
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class Var implements Value {
@@ -12,7 +12,11 @@ public class Var implements Value {
         this.name = name;
     }
 
-    public Object getValue(Context context){
-        return context.get(name);
+    public void accept(ExpVisitor visitor){
+        visitor.visit(this);
+    }
+
+    public String getName(){
+        return name;
     }
 }

@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-12
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class EvalExp extends Exp {
@@ -14,7 +14,15 @@ public class EvalExp extends Exp {
         this.right = right;
     }
 
-    public override Boolean isValid(Context context){
-        return left.getValue(context) == right.getValue(context);
+    public override void accept(ExpVisitor visitor){ 
+        visitor.visit(this);
+    }
+
+    public Value getLeft(){
+        return left;
+    }
+
+    public Value getRight(){
+        return right;
     }
 }

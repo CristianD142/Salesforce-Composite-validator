@@ -1,12 +1,11 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-12
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
-private class InterpreterTest {
-
+private class ExpValidatorVisitorTest {
     static final String BAD_INTERPRETED = 'formula was bad interpreted';
     
     @isTest
@@ -14,54 +13,36 @@ private class InterpreterTest {
         
         // A
         String expected = 'test';
-        String result = 'test';
 
         Var A = new Var('A');
+        
         Context context = new Context();
-        context.put('A', 'test');
+        context.put('A', expected);
+        
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = (String)A.getValue(context);
+        A.accept(visitor);
         Test.stopTest();
         
-        System.assertEquals(expected, result, 'incorrect value from context');
+        System.assertEquals(expected, visitor.value, 'incorrect value from context');
 
     }
 
     @isTest
-    private static void singleVarMultipleValueTest(){
+    private static void singleLiteralValueTest(){
         
-        // A
-        Object result1;
-        Object result2;
-        Object result3;
-        Object result4;
+        // 123
+        Value literal = new Literal(123);
 
-        Var A = new Var('A');
-       
-        Context context1 = new Context();
-        context1.put('A', 'test');
-
-        Context context2 = new Context();
-        context2.put('A', 123);
-
-        Context context3 = new Context();
-        context3.put('A', true);
-
-        Context context4 = new Context();
-        context4.put('A', null);
+        //no matter the context in literals
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(new Context());
         
         Test.startTest();
-        result1 = A.getValue(context1);
-        result2 = A.getValue(context2);
-        result3 = A.getValue(context3);
-        result4 = A.getValue(context4);
+        literal.accept(visitor);
         Test.stopTest();
-
-        System.assertEquals(context1.get('A'), result1, 'incorrect value from context');
-        System.assertEquals(context2.get('A'), result2, 'incorrect value from context');
-        System.assertEquals(context3.get('A'), result3, 'incorrect value from context');
-        System.assertEquals(context4.get('A'), result4, 'incorrect value from context');
+        
+        System.assertEquals(123, visitor.value, 'wrong value returned in literal');
 
     }
 
@@ -77,15 +58,15 @@ private class InterpreterTest {
         context.put('A', 1);
         context.put('B', 1);
 
-        Boolean result = false;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = eval1.isValid(context);
+        eval1.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(true, result, BAD_INTERPRETED);
+        System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
-    }
+    }    
 
     @isTest
     private static void singleAndExpSuccessTest(){
@@ -109,16 +90,16 @@ private class InterpreterTest {
         context.put('C', '2');
         context.put('D', '2');
 
-        Boolean result = false;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = andEval.isValid(context);
+        andEval.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(true, result, BAD_INTERPRETED);
+        System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
     }
-    
+
     @isTest
     private static void singleAndExpFailTest(){
 
@@ -141,13 +122,13 @@ private class InterpreterTest {
         context.put('C', '2');
         context.put('D', '3');
 
-        Boolean result = true;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = andEval.isValid(context);
+        andEval.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(false, result, BAD_INTERPRETED);
+        System.assertEquals(false, visitor.isValid(), BAD_INTERPRETED);
 
     }
 
@@ -173,13 +154,13 @@ private class InterpreterTest {
         context.put('C', '2');
         context.put('D', '2');
 
-        Boolean result = false;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = orEval.isValid(context);
+        orEval.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(true, result, BAD_INTERPRETED);
+        System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
     }
 
@@ -205,15 +186,16 @@ private class InterpreterTest {
         context.put('C', '3');
         context.put('D', '4');
 
-        Boolean result = true;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = orEval.isValid(context);
+        orEval.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(false, result, BAD_INTERPRETED);
+        System.assertEquals(false, visitor.isValid(), BAD_INTERPRETED);
 
     }
+
 
     @isTest
     private static void complexMixedAndOrSuccessTest(){
@@ -247,60 +229,13 @@ private class InterpreterTest {
         context.put('E', '5');
         context.put('F', '5');
 
-        Boolean result = false;
+        ExpValidatorVisitor visitor = new ExpValidatorVisitor(context);
 
         Test.startTest();
-        result = andEval.isValid(context);
+        andEval.accept(visitor);
         Test.stopTest();
 
-        System.assertEquals(true, result, BAD_INTERPRETED);
+        System.assertEquals(true, visitor.isValid(), BAD_INTERPRETED);
 
     }
-
-    @isTest
-    private static void singleLiteralValueTest(){
-        
-        // 123
-        Object result;
-        Value literal = new Literal(123);
-        
-        Test.startTest();
-        //no matter the context in literals
-        result = literal.getValue(new Context());
-        Test.stopTest();
-        
-        System.assertEquals(123, result, 'wrong value returned in literal');
-
-    }
-
-    @isTest
-    private static void multipleLiteralValuesTest(){
-        
-        // 'test' 123 TRUE  null
-        Object result1;
-        Object result2;
-        Object result3;
-        Object result4;
-
-        Value literal1 = new Literal('test');
-        Value literal2 = new Literal(123);
-        Value literal3 = new Literal(true);
-        Value literal4 = new Literal(null);
-       
-        Context nullContext = new Context();
-        
-        Test.startTest();
-        result1 = literal1.getValue(nullContext);
-        result2 = literal2.getValue(nullContext);
-        result3 = literal3.getValue(nullContext);
-        result4 = literal4.getValue(nullContext);
-        Test.stopTest();
-
-        System.assertEquals('test', result1, 'incorrect value in literal');
-        System.assertEquals(123, result2, 'incorrect value in literal');
-        System.assertEquals(true, result3, 'incorrect value in literal');
-        System.assertEquals(null, result4, 'incorrect value in literal');
-
-    }
-
 }
