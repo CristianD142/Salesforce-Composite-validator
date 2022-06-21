@@ -9,12 +9,19 @@ public class Token {
     public enum Type { 
         OPEN_BRACKET,
         CLOSE_BRACKET,
-        AND_OR,
-        EQUAL_DIFF,
-        CONSTANT,
+        AND_OP,
+        OR_OP,
+        EQUAL,
+        DIFF,
+        TRUE_CONS,
+        FALSE_CONS,
+        STRING_CONS,
+        INTEGER_CONS,
+        DECIMAL_CONS,
+        NULL_CONS,
         VARIABLE,
         NOT_OP,
-        COMMA        
+        COMMA
     }
 
     private Type type;

@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-18
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class Scanner {
@@ -16,10 +16,16 @@ public class Scanner {
         addTokenPattern(Token.Type.OPEN_BRACKET,'\\(');
         addTokenPattern(Token.Type.CLOSE_BRACKET,'\\)');
         addTokenPattern(Token.Type.COMMA,',');
-        addTokenPattern(Token.Type.AND_OR,'AND|OR');
-        addTokenPattern(Token.Type.EQUAL_DIFF,'EQUAL|DIFF');
+        addTokenPattern(Token.Type.AND_OP,'AND');
+        addTokenPattern(Token.Type.OR_OP,'OR');
+        addTokenPattern(Token.Type.EQUAL,'EQUAL');
+        addTokenPattern(Token.Type.DIFF,'DIFF');
         addTokenPattern(Token.Type.NOT_OP,'NOT');
-        addTokenPattern(Token.Type.CONSTANT,'[0-9]+');
+        addTokenPattern(Token.Type.TRUE_CONS,'TRUE');
+        addTokenPattern(Token.Type.FALSE_CONS,'FALSE');
+        addTokenPattern(Token.Type.NULL_CONS,'NULL');
+        addTokenPattern(Token.Type.INTEGER_CONS,'[0-9]+');
+        addTokenPattern(Token.Type.STRING_CONS,'"[^"]*"');
         addTokenPattern(Token.Type.VARIABLE,'[a-zA-Z][a-zA-Z0-9_]*');
     }
     
@@ -37,7 +43,6 @@ public class Scanner {
     }
 
     public Token next(){ 
-        System.debug(source);
         Boolean match = false;
         Token token;
         for(TokenPattern tokenPattern : tokenPatterns){

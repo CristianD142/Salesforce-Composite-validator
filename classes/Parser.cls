@@ -53,9 +53,9 @@ public class Parser {
                     evaluation();
                 }
             }
-        }else if(currentToken.getType() == Token.Type.AND_OR){
+        }else if(isAndOr()){
             
-            if(currentToken.getValue() == 'AND'){
+            if(currentToken.getType() == Token.Type.AND_OP){
                 builder.buildAnd();
             }else{
                 builder.buildOr();
@@ -81,12 +81,12 @@ public class Parser {
 
     private void comparison(){
         Value left = value();
-        if(currentToken.getType() == Token.Type.EQUAL_DIFF){
-            String typeComparision = currentToken.getValue(); 
+        if(isEqualDiff()){
+            Token.Type typeComparision = currentToken.getType(); 
             next();
             if(isValue()){
                 Value right = value();
-                if(typeComparision == 'EQUAL'){
+                if(typeComparision == Token.Type.EQUAL){
                     builder.buildEval(left, right);
                 }else{
                     builder.buildEval(EvalExp.Type.DIFF, left, right);
@@ -97,7 +97,7 @@ public class Parser {
     }
 
     private void comparisonOp(){
-        if(currentToken.getType() == Token.Type.EQUAL_DIFF){
+        if(isEqualDiff()){
             next();
             if(isValue()){
                 value();
@@ -111,16 +111,46 @@ public class Parser {
         Value result;
         if(currentToken.getType() == Token.Type.VARIABLE){
             result = new Variable(currentToken.getValue());
-            next();
-        }else if(currentToken.getType() == Token.Type.CONSTANT){
-            result = new Literal(currentToken.getValue());
-            next();
+        }else if(currentToken.getType() == Token.Type.TRUE_CONS){
+            result = new Literal(true);
         }
+        else if(currentToken.getType() == Token.Type.FALSE_CONS){
+            result = new Literal(false);
+        }
+        else if(currentToken.getType() == Token.Type.INTEGER_CONS){
+            result = new Literal(Integer.valueOf(currentToken.getValue()));
+        }
+        else if(currentToken.getType() == Token.Type.NULL_CONS){
+            result = new Literal(null);
+        }
+        else if(currentToken.getType() == Token.Type.STRING_CONS){
+            result = new Literal(currentToken.getValue().removeStart('"').removeEnd('"'));
+        }
+        next();
         return result;
     }
 
     private Boolean isValue(){
-        return (currentToken.getType() == Token.Type.VARIABLE || currentToken.getType() == Token.Type.CONSTANT);
+        return (
+            currentToken.getType() == Token.Type.VARIABLE || 
+            currentToken.getType() == Token.Type.TRUE_CONS ||
+            currentToken.getType() == Token.Type.FALSE_CONS ||
+            currentToken.getType() == Token.Type.NULL_CONS ||
+            currentToken.getType() == Token.Type.INTEGER_CONS ||
+            currentToken.getType() == Token.Type.STRING_CONS 
+        );
+    }
+
+    private Boolean isAndOr(){
+        return (currentToken.getType() == Token.Type.AND_OP || 
+            currentToken.getType() == Token.Type.OR_OP
+        );
+    }
+
+    private Boolean isEqualDiff(){
+        return (currentToken.getType() == Token.Type.EQUAL || 
+            currentToken.getType() == Token.Type.DIFF
+        );
     }
 
 }

@@ -6,7 +6,7 @@
 **/
 @isTest
 private class PoCTest {
-
+    
     @isTest
     static void checkRegularExpressions(){
         String source = ',VARIABLE)';
@@ -130,6 +130,14 @@ private class PoCTest {
 
         System.debug(visitor.getResult());
 
+    }
+    
+    @isTest 
+    static void processScannerConstants(){
+        Scanner scanner = new Scanner('AND ( 1 EQUAL "2", TRUE EQUAL FALSE , "something" DIFF NULL, "something 2" DIFF "123 something 4" ) ');
+        while(scanner.hasNext()){
+            System.debug(scanner.next());
+        }
     }
 
 }
