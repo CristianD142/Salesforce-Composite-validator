@@ -11,7 +11,7 @@
  * 9 value -> VARIABLE
  * 10 value -> CONSTANT
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-20
+ * @last modified on  : ISO8601: 2022-06-21
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 
@@ -48,7 +48,7 @@ public class Parser {
                 next();
                 evaluation();
                 if(currentToken.getType() == Token.Type.CLOSE_BRACKET){
-                    builder.epsilon();
+                    builder.breakComposite();
                     next();
                     evaluation();
                 }
@@ -66,7 +66,7 @@ public class Parser {
                 next();
                 evaluation();
                 if(currentToken.getType() == Token.Type.CLOSE_BRACKET){
-                    builder.epsilon();
+                    builder.breakComposite();
                     next();
                     evaluation();
                 }

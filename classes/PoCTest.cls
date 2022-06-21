@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-20
+ * @last modified on  : ISO8601: 2022-06-21
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
@@ -61,7 +61,7 @@ private class PoCTest {
         builder.buildOr();
         builder.buildEval(new Literal(3), new Literal(4));
         builder.buildEval(new Literal(5), new Literal(6));        
-        builder.epsilon();
+        builder.breakComposite();
 
         Exp root = builder.getRootNode();
         System.debug(root);
@@ -116,11 +116,11 @@ private class PoCTest {
             builder.buildAnd();
                 builder.buildNot();
                 builder.buildEval(new Literal(1), new Literal(2));
-                builder.epsilon();
+                builder.breakComposite();
             builder.buildOr();
                 builder.buildEval(new Literal(3), new Literal(4));
                 builder.buildEval(new Literal(5), new Literal(6));        
-                builder.epsilon();
+                builder.breakComposite();
 
         Exp root = builder.getRootNode();
         System.debug(root);
