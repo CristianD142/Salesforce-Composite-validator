@@ -83,10 +83,15 @@ public class Parser {
     private void comparison(){
         Value left = value();
         if(currentToken.getType() == Token.Type.EQUAL_DIFF){
+            String typeComparision = currentToken.getValue(); 
             next();
             if(isValue()){
                 Value right = value();
-                builder.buildEval(left, right);
+                if(typeComparision == 'EQUAL'){
+                    builder.buildEval(left, right);
+                }else{
+                    builder.buildEval(EvalExp.Type.DIFF, left, right);
+                }
                 comparisonOp();
             }
         }
