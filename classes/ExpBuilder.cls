@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-19
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class ExpBuilder {
@@ -27,6 +27,10 @@ public class ExpBuilder {
 
     public void epsilon(){
         current = current.parent;
+    }
+
+    public void buildNot(){
+        buildComposite(new NotExp());
     }
 
     public Exp getRootNode(){

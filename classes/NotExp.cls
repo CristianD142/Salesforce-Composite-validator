@@ -8,7 +8,10 @@ public class NotExp extends Exp {
     
     private Exp exp;
     
+    public NotExp() { }
+
     public NotExp(Exp exp) {
+        exp.parent = this;
         this.exp = exp;
     }
 
@@ -18,5 +21,10 @@ public class NotExp extends Exp {
 
     public Exp getExp(){
         return exp;
+    }
+
+    public override void add(Exp exp){
+        exp.parent = this;
+        this.exp = exp;
     }
 }

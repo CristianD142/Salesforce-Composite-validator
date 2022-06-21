@@ -43,6 +43,7 @@ public class Parser {
 
     private void evaluation(){
         if(currentToken.getType() == Token.Type.NOT_OP){
+            builder.buildNot();
             next();
             if(currentToken.getType() == Token.Type.OPEN_BRACKET){
                 next();

@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-19
+ * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
@@ -75,7 +75,7 @@ private class PoCTest {
 
     @isTest
     static void wholeBuildProcess(){
-        Scanner scanner = new Scanner('AND ( 1 EQUAL 2, OR (3 EQUAL 4, 5 EQUAL 6), 7 EQUAL 8 )');
+        Scanner scanner = new Scanner('NOT (AND ( 1 EQUAL 2, OR ( NOT ( 3 EQUAL 4 ), 5 EQUAL 6), 7 EQUAL 8 ) )');
         ExpBuilder builder = new ExpBuilder();
         Parser parser = new Parser(scanner,builder);
         parser.construct();
@@ -85,6 +85,51 @@ private class PoCTest {
         root.accept(visitor);
 
         System.debug(visitor.getResult());
+    }
+
+    @isTest
+    static void buildSimpleNotStructure(){
+        
+        //NOT (1 EQUAL 2 )
+
+        ExpBuilder builder = new ExpBuilder();        
+        builder.buildNot();
+        builder.buildEval(new Literal(1), new Literal(2));
+
+        Exp root = builder.getRootNode();
+        System.debug(root);
+
+        ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
+        root.accept(visitor);
+
+        System.debug(visitor.getResult());
+
+    }
+
+    @isTest
+    static void buildComplexNotStructure(){
+        
+        //NOT ( AND ( NOT (1 EQUAL 2), OR (3 EQUAL 4, 5 EQUAL 6) ) )
+
+        ExpBuilder builder = new ExpBuilder();        
+        builder.buildNot();
+            builder.buildAnd();
+                builder.buildNot();
+                builder.buildEval(new Literal(1), new Literal(2));
+                builder.epsilon();
+            builder.buildOr();
+                builder.buildEval(new Literal(3), new Literal(4));
+                builder.buildEval(new Literal(5), new Literal(6));        
+                builder.epsilon();
+
+        Exp root = builder.getRootNode();
+        System.debug(root);
+
+        ExpPrettyPrintVisitor visitor = new ExpPrettyPrintVisitor();
+        root.accept(visitor);
+
+        System.debug(visitor.getResult());
+
     }
 
 }
