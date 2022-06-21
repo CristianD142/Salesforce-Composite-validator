@@ -8,9 +8,8 @@
  * 6 comparision    -> value EQUAL|DIFF value comparision_op
  * 7 comparision_op -> EQUAL|DIFF value comparision_op
  * 8 comparision_op -> EPSILON
-
-9 value -> VARIABLE
-10 value -> CONSTANT
+ * 9 value -> VARIABLE
+ * 10 value -> CONSTANT
  * @author            : ing.cristian.diaz@gmail.com
  * @last modified on  : ISO8601: 2022-06-20
  * @last modified by  : ing.cristian.diaz@gmail.com

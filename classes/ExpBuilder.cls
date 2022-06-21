@@ -25,6 +25,10 @@ public class ExpBuilder {
         buildLeaf(new EvalExp(left,right));
     }
 
+    public void buildEval(EvalExp.Type type,Value left,Value right){
+        buildLeaf(new EvalExp(type,left,right));
+    }
+
     public void epsilon(){
         current = current.parent;
     }
