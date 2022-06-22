@@ -1,17 +1,17 @@
 /**
  * @description       : parser using the folowing grammar LL(1)
- * 1 evaluation     -> NOT ( evaluation ) evaluation
- * 2 evaluation     -> AND|OR ( evaluation ) evaluation
- * 3 evaluation     -> comparision evaluation
- * 4 evaluation     -> , evaluation
- * 5 evaluation     -> EPSILON
- * 6 comparision    -> value EQUAL|DIFF value comparision_op
- * 7 comparision_op -> EQUAL|DIFF value comparision_op
- * 8 comparision_op -> EPSILON
- * 9 value -> VARIABLE
- * 10 value -> CONSTANT
+ *                      1 evaluation     -> NOT ( evaluation ) evaluation
+ *                      2 evaluation     -> AND|OR ( evaluation ) evaluation
+ *                      3 evaluation     -> comparision evaluation
+ *                      4 evaluation     -> , evaluation
+ *                      5 evaluation     -> EPSILON
+ *                      6 comparision    -> value EQUAL|DIFF value comparision_op
+ *                      7 comparision_op -> EQUAL|DIFF value comparision_op
+ *                      8 comparision_op -> EPSILON
+ *                      9 value -> VARIABLE
+ *                      10 value -> CONSTANT
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-21
+ * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 

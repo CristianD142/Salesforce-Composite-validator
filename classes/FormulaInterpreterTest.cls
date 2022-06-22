@@ -1,5 +1,5 @@
 /**
- * @description       : 
+ * @description       : tests for FormulaInterpreter facade
  * @author            : ing.cristian.diaz@gmail.com
  * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com

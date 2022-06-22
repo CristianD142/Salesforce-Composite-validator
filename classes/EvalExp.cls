@@ -1,7 +1,8 @@
 /**
- * @description       : 
+ * @description       : represent a comparison, it could be equal 
+ *                      or diff. A = B or A != B
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-20
+ * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class EvalExp extends Exp {

@@ -1,7 +1,8 @@
 /**
- * @description       : 
+ * @description       : Manage the values for the interpretes, 
+ *                      it works as map 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-21
+ * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class Context {
