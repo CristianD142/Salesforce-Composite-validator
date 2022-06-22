@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-21
+ * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class FormulaInterpreter {
@@ -28,6 +28,17 @@ public class FormulaInterpreter {
 
     public Boolean isValid(SObject record){
         Context context = new Context(record.getPopulatedFieldsAsMap());
+        return isValid(context);
+    }
+
+    public Boolean isValid(SObject record,Map<String,Object> extraParameters){
+        
+        Map<String,Object> allParameters = new Map<String,Object>();
+
+        allParameters.putAll(record.getPopulatedFieldsAsMap());
+        allParameters.putAll(extraParameters);
+        Context context = new Context(allParameters);
+
         return isValid(context);
     }
 }

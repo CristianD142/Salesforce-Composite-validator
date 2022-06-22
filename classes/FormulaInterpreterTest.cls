@@ -1,7 +1,7 @@
 /**
  * @description       : 
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-21
+ * @last modified on  : ISO8601: 2022-06-22
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
@@ -145,6 +145,26 @@ private class FormulaInterpreterTest {
 
         test.startTest();
         result = interpreter.isValid(acc);
+        test.stopTest();
+
+        System.assertEquals(true, result);
+    }
+
+    @isTest
+    static void singleAndExpSuccessFromRecordAndMapTest(){
+        
+        // AND ( Name = 'test', NoRelatedParameter = NULL )
+        Account acc = new Account();
+        acc.Name = 'test';
+        
+        Map<String,Object> extraParameters = new Map<String,Object>();
+        extraParameters.put('NoRelatedParameter', null);
+        
+        Boolean result = false;
+        FormulaInterpreter interpreter = new FormulaInterpreter('AND ( Name EQUAL "test", NoRelatedParameter EQUAL NULL)');
+
+        test.startTest();
+        result = interpreter.isValid(acc,extraParameters);
         test.stopTest();
 
         System.assertEquals(true, result);
