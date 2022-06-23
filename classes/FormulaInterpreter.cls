@@ -1,7 +1,7 @@
 /**
  * @description       : Facade to perform validations
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-22
+ * @last modified on  : ISO8601: 2022-06-23
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 public class FormulaInterpreter {
@@ -39,6 +39,11 @@ public class FormulaInterpreter {
         allParameters.putAll(extraParameters);
         Context context = new Context(allParameters);
 
+        return isValid(context);
+    }
+
+    public Boolean isValid(Map<String,Object> parameters){
+        Context context = new Context(parameters);
         return isValid(context);
     }
 }

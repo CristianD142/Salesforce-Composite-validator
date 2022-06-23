@@ -1,7 +1,7 @@
 /**
  * @description       : tests for FormulaInterpreter facade
  * @author            : ing.cristian.diaz@gmail.com
- * @last modified on  : ISO8601: 2022-06-22
+ * @last modified on  : ISO8601: 2022-06-23
  * @last modified by  : ing.cristian.diaz@gmail.com
 **/
 @isTest
@@ -165,6 +165,23 @@ private class FormulaInterpreterTest {
 
         test.startTest();
         result = interpreter.isValid(acc,extraParameters);
+        test.stopTest();
+
+        System.assertEquals(true, result);
+    }
+
+    @isTest
+    static void singleEvalExpSuccessFromMapTest(){
+        
+        // Name = 'test'
+        Map<String,Object> parameters = new Map<String,Object>();
+        parameters.put('Name', 'test');
+
+        Boolean result = false;
+        FormulaInterpreter interpreter = new FormulaInterpreter('Name EQUAL "test"');
+
+        test.startTest();
+        result = interpreter.isValid(parameters);
         test.stopTest();
 
         System.assertEquals(true, result);
